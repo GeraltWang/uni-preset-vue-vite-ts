@@ -2,8 +2,8 @@
   "name": "uni-preset-vue",
   "version": "0.0.0",
   "lint-staged": {
-    "**/*.{ts|js|vue}": [
-      "eslint --ext .ts --fix --quiet --ignore-path .gitignore ./"
+    "*.{ts|js|vue}": [
+      "eslint --fix --quiet --ignore-path .gitignore ./"
     ]
   },
   "scripts": {
