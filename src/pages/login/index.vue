@@ -4,25 +4,11 @@
     <view class="text-area">
       <text class="title">{{ title }}</text>
     </view>
-    <button @click="test">123</button>
   </view>
 </template>
 
 <script setup lang="ts">
-const title = ref('Hello')
-
-const router = useRouter()
-
-const pageQuery = ref<Record<string, any> | undefined>(undefined)
-
-onLoad((query) => {
-  pageQuery.value = query
-  console.log(unref(pageQuery))
-})
-
-const test = () => {
-  router.push('/pages/login/index')
-}
+const title = ref('Login')
 </script>
 
 <style>

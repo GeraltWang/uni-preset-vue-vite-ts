@@ -4,18 +4,20 @@
  * @LastEditors: GeraltWang
  * @LastEditTime: 2023-08-05 17:24:33
  * @FilePath: /uni-preset-vue-vite-ts/src/main.ts
- * @Description: 
- * 
- * 
+ * @Description:
+ *
+ *
  */
 import { createSSRApp } from 'vue'
-import * as Pinia from 'pinia'
+import { setupStore } from './store'
+import { setupRouter } from './router'
 import App from './App.vue'
+
 export function createApp () {
   const app = createSSRApp(App)
-  app.use(Pinia.createPinia())
+  setupStore(app)
+  setupRouter(app)
   return {
-    app,
-    Pinia
+    app
   }
 }

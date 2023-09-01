@@ -1,6 +1,11 @@
 {
   "name": "uni-preset-vue",
   "version": "0.0.0",
+  "lint-staged": {
+    "**/*.{ts|js|vue}": [
+      "eslint --ext .ts --fix --quiet --ignore-path .gitignore ./"
+    ]
+  },
   "scripts": {
     "dev:app": "uni -p app",
     "dev:app-android": "uni -p app-android",
@@ -37,7 +42,9 @@
     "build:quickapp-webview-huawei": "uni build -p quickapp-webview-huawei",
     "build:quickapp-webview-union": "uni build -p quickapp-webview-union",
     "type-check": "vue-tsc --noEmit",
-    "lint": "eslint --ext .tsx,.ts ./src"
+    "lint": "eslint --ext .ts --fix --quiet --ignore-path .gitignore ./",
+    "lint-staged": "lint-staged",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@dcloudio/uni-app": "3.0.0-alpha-3081220230802001",
@@ -55,7 +62,7 @@
     "@dcloudio/uni-mp-weixin": "3.0.0-alpha-3081220230802001",
     "@dcloudio/uni-mp-xhs": "3.0.0-alpha-3081220230802001",
     "@dcloudio/uni-quickapp-webview": "3.0.0-alpha-3081220230802001",
-    "pinia": "2.0.9",
+    "pinia": "2.0.36",
     "vue": "3.2.47",
     "vue-i18n": "^9.2.2"
   },
@@ -69,13 +76,22 @@
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "@vitejs/plugin-vue": "^4.3.4",
+    "prettier": "^2.8.8",
     "eslint": "^8.48.0",
     "eslint-plugin-import": "^2.28.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-vue": "^9.15.1",
     "sass": "^1.63.6",
     "typescript": "^5.2.2",
     "vite": "^4.0.3",
-    "vue-tsc": "^1.0.24"
+    "uni-mini-router": "^0.1.4",
+    "uni-read-pages-vite": "^0.0.6",
+    "unplugin-auto-import": "^0.16.6",
+    "vue-tsc": "^1.0.24",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
+    "@commitlint/cli": "^17.6.7",
+    "@commitlint/config-conventional": "^17.6.7"
   }
 }

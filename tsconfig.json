@@ -1,15 +1,27 @@
 {
   "compilerOptions": {
+    "pretty": true, // 在输出中启用颜色和格式，使编译器错误更容易阅读
+    "newLine": "crlf", // 设置发出文件的换行符
+
+    /* 严格检查选项 */
+    "strict": true, // 开启所有严格的类型检查
+    "alwaysStrict": true, // 在代码中注入'use strict'
+    "noImplicitAny": true, // 不允许隐式的any类型
+    "noImplicitThis": true, // 不允许this有隐式的any类型
+    "strictNullChecks": true, // 在进行类型检查时，请考虑null和undefined。
+    "strictBindCallApply": true, // 检查bind、call和apply方法的参数是否与原始函数匹配。
+    "strictFunctionTypes": true, // 在给函数赋值时，要确保参数和返回值是子类型兼容的。
+    "strictPropertyInitialization": true, // 类的实例属性必须初始化
+
     "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "strict": true,
     "jsx": "preserve",
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "sourceMap": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"]
     },
@@ -25,5 +37,6 @@
     "types/**/*.d.ts",
     "types/**/*.ts",
     "vite.config.*",
-  ]
+  ],
+  "exclude": []
 }

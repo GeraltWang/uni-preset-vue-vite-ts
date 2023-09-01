@@ -9,14 +9,14 @@
  * 
  */
 module.exports = {
+  root: true,
   env: {
+    node: true,
     browser: true,
-    commonjs: true,
-    es2021: true
   },
   parser: 'vue-eslint-parser',
   parserOptions: {
-    ecmaVersion: 2021,
+    ecmaVersion: 'latest',
     parser: '@typescript-eslint/parser',
     sourceType: 'module',
     ecmaFeatures: {
@@ -26,7 +26,8 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:vue/vue3-essential',
-    'plugin:@typescript-eslint/recommended'
+    'plugin:@typescript-eslint/recommended',
+    './.eslintrc-auto-import.json'
   ],
   plugins: ['vue', '@typescript-eslint'],
   rules: {
@@ -42,6 +43,7 @@ module.exports = {
     'space-before-function-paren': ['error', 'always'],
     'no-empty-function': 'off',
     'no-empty': 'off',
+    eqeqeq: ['error', 'always', { null: 'ignore' }], //比较时强制使用 === 或者 !==,但对null作比较时可以不用全等
     // ts 风格
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/ban-ts-ignore': 'off',
@@ -72,4 +74,29 @@ module.exports = {
     'vue/multi-word-component-names': 'off', // 要求组件名称始终为 “-” 链接的单词
     'vue/v-on-event-hyphenation': 'off', // 事件名称用-链接
   },
+  globals: {
+    //可以定义全局中的变量的权限（只读，可读可写）
+    defineProps: 'readonly',
+    defineEmits: 'readonly',
+    defineExpose: 'readonly',
+    withDefaults: 'readonly',
+    uni: 'readonly',
+  },
+  ignorePatterns: [
+    // # 忽略目录
+    '/dist',
+    '/public',
+    '/src/public',
+    '/src/static',
+    '/node_modules',
+    // # 忽略文件
+    '**/*-min.js',
+    '**/*.min.js',
+    '**/*-min.css',
+    '**/*.min.css',
+    '**/*.tsbuildinfo',
+    '**/*.config.js',
+    '**/*.config.ts',
+    '/src/manifest.json',
+  ],
 }
