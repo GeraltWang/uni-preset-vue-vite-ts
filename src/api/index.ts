@@ -24,6 +24,8 @@ const defaultConfig: RequestConfig = {
 
 let isRefreshing = false
 
+let loadingCount = 0
+
 export const request = <T>(
   url: string,
   method: UniNamespace.RequestOptions['method'],
@@ -32,7 +34,12 @@ export const request = <T>(
 ): Promise<ApiResponseData<T>> => {
   return new Promise((resolve, reject) => {
     const { loading, loadingText = defaultConfig.loadingText, header = {} } = config
-    loading && showLoading(loadingText as string, true)
+    if (loading) {
+      if (loadingCount === 0) {
+        showLoading(loadingText as string)
+      }
+      loadingCount++
+    }
     uni.request({
       url: `${SysConfig.apiBaseUrl}${url}`,
       method,
@@ -50,6 +57,9 @@ export const request = <T>(
           reject(data)
         }
         if (data.code === ResponseCode.UNAUTHORIZED || data.code === ResponseCode.FORBIDDEN) {
+          if (!isRefreshing) {
+            isRefreshing = true
+          }
           reject(data)
         } else if (data.code === ResponseCode.ERROR) {
           reject(data)
@@ -61,7 +71,12 @@ export const request = <T>(
         reject(err)
       },
       complete: () => {
-        loading && hideLoading()
+        if (loading) {
+          loadingCount--
+          if (loadingCount === 0) {
+            hideLoading()
+          }
+        }
       }
     })
   })

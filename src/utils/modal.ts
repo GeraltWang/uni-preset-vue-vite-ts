@@ -14,10 +14,11 @@
  * @param mask 遮罩
  * @returns
  */
-export const showLoading = (title: string, mask: boolean) => {
+export const showLoading = (title: string, options?: Partial<UniApp.ShowLoadingOptions>) => {
   return uni.showLoading({
     title,
-    mask
+    mask: true,
+    ...options
   })
 }
 
@@ -36,9 +37,9 @@ export const hideLoading = () => {
  */
 export const showToast = (
   title: string,
-  icon: UniNamespace.ShowToastOptions['icon'],
+  icon: UniApp.ShowToastOptions['icon'],
   mask = false,
-  position?: UniNamespace.ShowToastOptions['position'],
+  position?: UniApp.ShowToastOptions['position'],
   duration = 1500
 ) => {
   return uni.showToast({
@@ -52,4 +53,42 @@ export const showToast = (
 
 export const hideToast = () => {
   uni.hideToast()
+}
+
+/**
+ * 显示模态弹窗，可以只有一个确定按钮，也可以同时有确定和取消按钮
+ * @param options
+ * @constructor
+ */
+export function showModal (options: UniApp.ShowModalOptions) {
+  return new Promise((resolve, reject) => {
+    uni.showModal({
+      ...options,
+      success: (res) => {
+        resolve(res)
+      },
+      fail: (res) => {
+        reject(res)
+      },
+    })
+  })
+}
+
+/**
+* 从底部向上弹出操作菜单
+* @param options
+* @constructor
+*/
+export function showActionSheet (options: UniApp.ShowActionSheetOptions) {
+  return new Promise((resolve, reject) => {
+    uni.showActionSheet({
+      ...options,
+      success: (res) => {
+        resolve(res)
+      },
+      fail: (res) => {
+        reject(res)
+      },
+    })
+  })
 }
