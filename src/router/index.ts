@@ -1,5 +1,4 @@
 import type { App } from 'vue'
-import { createRouter } from 'uni-mini-router'
 
 /**
  * @description 路由使用方法
@@ -25,7 +24,10 @@ const router = createRouter({
   routes: [...ROUTES]
 })
 
-router.beforeEach((to, from, next) => {})
+router.beforeEach((to, from, next) => {
+  console.log('🚀 ~ file: index.ts:28 ~ router.beforeEach ~ to, from:', to, from)
+  next()
+})
 
 export function setupRouter (app: App<Element>) {
   app.use(router)

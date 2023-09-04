@@ -10,6 +10,7 @@
  */
 import { ConfigEnv, loadEnv, UserConfig } from 'vite'
 import uni from '@dcloudio/vite-plugin-uni'
+import Unocss from 'unocss/vite'
 import { resolve } from 'path'
 import TransformPages from 'uni-read-pages-vite'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -37,13 +38,14 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     },
     plugins: [
       uni(),
+      Unocss(),
       AutoImport({
         imports: [
           'vue',
           'uni-app',
           'pinia',
           {
-            'uni-mini-router': ['useRouter', 'useRoute'],
+            'uni-mini-router': ['createRouter', 'useRouter', 'useRoute'],
           },
         ],
         dts: 'types/auto-imports.d.ts',
@@ -52,6 +54,13 @@ export default ({ mode }: ConfigEnv): UserConfig => {
         }
       })
     ],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@import "./src/assets/styles/mixin.scss";`
+        }
+      }
+    },
     base: './',
     resolve: {
       // 设置路径

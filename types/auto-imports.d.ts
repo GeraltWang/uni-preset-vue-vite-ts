@@ -10,6 +10,7 @@ declare global {
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
   const createPinia: typeof import('pinia')['createPinia']
+  const createRouter: typeof import('uni-mini-router')['createRouter']
   const customRef: typeof import('vue')['customRef']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
